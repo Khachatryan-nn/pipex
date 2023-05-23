@@ -6,18 +6,18 @@
 /*   By: tikhacha <tikhacha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/17 13:23:24 by tikhacha          #+#    #+#             */
-/*   Updated: 2023/05/17 13:24:42 by tikhacha         ###   ########.fr       */
+/*   Updated: 2023/05/20 20:04:58 by tikhacha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../incs/pipex.h"
 
-int	ft_strlen(char *s)
+int	ft_strlen(char const *s)
 {
 	int	i;
 
 	i = 0;
-	while (s[i])
+	while (s[i] != '\0')
 		i++;
 	return (i);
 }

@@ -1,34 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tikhacha <tikhacha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/17 13:17:24 by tikhacha          #+#    #+#             */
-/*   Updated: 2023/05/23 12:14:59 by tikhacha         ###   ########.fr       */
+/*   Created: 2023/05/20 19:18:01 by tikhacha          #+#    #+#             */
+/*   Updated: 2023/05/20 20:50:08 by tikhacha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../incs/pipex.h"
 
-int	main(int argv, char **argc, char **env)
+char	*ft_strjoin(char const *s1, char const *s2)
 {
-	t_pipex	pipex;
-	//int		i;
-	int		child_p;
+	int		i;
+	int		j;
+	int		len;
+	char	*new;
 
-	if (argv < 5)
+	if (!s1 || !s2)
+		return (NULL);
+	i = 0;
+	len = ft_strlen(s1) + ft_strlen(s2) + 1;
+	new = (char *)malloc(sizeof(char) * len);
+	if (!new)
+		return (NULL);
+	j = -1;
+	new[len - 1] = '\0';
+	while (s1[++j] != '\0')
 	{
-		write(2, "Error: Too few arguments!\n", 26);
-		return (0);
+		new[i++] = s1[j];
 	}
-	pipex.done = 0;
-	pipex.arg_n = argv;
-	parsing(argc, &pipex, env);
-	if (pipex.done == 0)
-		return (0);
-	child_p = fork();
-	if (child_p == -1)
-		perror("Error:");
+	j = -1;
+	while (s2[++j] != '\0')
+		new[i++] = s2[j];
+	return (new);
 }
