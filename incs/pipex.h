@@ -6,7 +6,7 @@
 /*   By: tikhacha <tikhacha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/17 13:17:53 by tikhacha          #+#    #+#             */
-/*   Updated: 2023/05/23 12:20:05 by tikhacha         ###   ########.fr       */
+/*   Updated: 2023/05/24 15:53:05 by tikhacha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,27 +28,28 @@
 
 /*
 *char	**cmd_args;
-*char	*file_out;
-*char	*file_in;
+*char	*f_2rd;
+*char	*f_2wr;
 *char	**path;
 *char	**cmd;
 *int	cmd_n;
 *int	arg_n;
-*int	fileout_d;
-*int	filein_d;
+*int	fd_2rd;
+*int	fd_2wr;
 *int	done;
 */
 typedef struct s_pipex
 {
-	char	**cmd_args;
-	char	*file_out;
-	char	*file_in;
+	char	***cmd_args;
+	char	*f_2rd;
+	char	*f_2wr;
 	char	**path;
 	char	**cmd;
+	int		pipes_n;
 	int		cmd_n;
 	int		arg_n;
-	int		fileout_d;
-	int		filein_d;
+	int		fd_2rd;
+	int		fd_2wr;
 	int		done;
 }			t_pipex;
 
