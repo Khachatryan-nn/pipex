@@ -6,7 +6,7 @@
 /*   By: tikhacha <tikhacha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/17 13:17:53 by tikhacha          #+#    #+#             */
-/*   Updated: 2023/05/24 15:53:05 by tikhacha         ###   ########.fr       */
+/*   Updated: 2023/05/25 16:13:35 by tikhacha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@ typedef struct s_pipex
 	int		fd_2rd;
 	int		fd_2wr;
 	int		done;
+	int		pipes[2];
 }			t_pipex;
 
 void	parsing(char **arg, t_pipex *pipex, char **env);
@@ -58,6 +59,7 @@ char	*ft_strjoin(char const *s1, char const *s2);
 char	*strinmatrix(char **matrix, char *to_find);
 char	**ft_split(char const *s, char c);
 char	*ft_strstr(char *s1, char *s2);
+int		ft_strcmp(char *s1, char *s2);
 int		ft_strlen(char const *s);
 void	free_matrix(char **x);
 

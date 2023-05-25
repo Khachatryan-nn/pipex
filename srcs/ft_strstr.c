@@ -6,11 +6,25 @@
 /*   By: tikhacha <tikhacha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/17 13:22:19 by tikhacha          #+#    #+#             */
-/*   Updated: 2023/05/19 09:15:44 by tikhacha         ###   ########.fr       */
+/*   Updated: 2023/05/25 15:50:54 by tikhacha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../incs/pipex.h"
+
+int	ft_strcmp(char *s1, char *s2)
+{
+	int	i;
+
+	i = -1;
+	if (s2[0] == '\0' == s1[0])
+		return (0);
+	while (s1[i] && s2[i] && s1[i] == s2[i])
+		i++;
+	if (s1[i] == '\0' == s2[i])
+		return (0);
+	return (s1[i] - s2[i]);
+}
 
 char	*ft_strstr(char *s1, char *s2)
 {
