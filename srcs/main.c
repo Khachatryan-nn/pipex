@@ -6,7 +6,7 @@
 /*   By: tikhacha <tikhacha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/17 13:17:24 by tikhacha          #+#    #+#             */
-/*   Updated: 2023/05/25 15:52:28 by tikhacha         ###   ########.fr       */
+/*   Updated: 2023/05/25 17:26:54 by tikhacha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ void static	child_p(t_pipex *pipex, int i);
 {
 	if (i == 0)
 	{
-		first_command(pipex);
+		first_command(i, pipex);
 	}
 	eles if (i == (*pipex).pipes_n)
 		//some staff for ending command
