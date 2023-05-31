@@ -6,33 +6,30 @@
 /*   By: tikhacha <tikhacha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/17 13:17:24 by tikhacha          #+#    #+#             */
-/*   Updated: 2023/05/25 17:26:54 by tikhacha         ###   ########.fr       */
+/*   Updated: 2023/06/01 01:02:39 by tikhacha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../incs/pipex.h"
 
 void static preparing(t_pipex *pipex);
-void static	child_p(t_pipex *pipex, int i);
 
 int	main(int argv, char **argc, char **env)
 {
-	(void) argv;
-	(void) argc;
-	(void) env;
 	t_pipex	pipex;
 
-	if (argv < 5)
+	if (argv < 6 && ft_strcmp(argc[1], "here_doc"))
 	{
 		write(2, "Error: Too few arguments!\n", 26);
 		return (0);
 	}
-	pipex.done = 0;
-	pipex.arg_n = argv;
-	pipex.pipes_n = pipex.arg_n - 1;
-	parsing(argc, &pipex, env);
-	if (pipex.done == 0)
+	else if (argv < 5)
+	{
+		write(2, "Error: Too few arguments!\n", 26);
 		return (0);
+	}
+	pipex_init(&pipex, argv, argc, env);
+	parsing(&pipex, env);
 	preparing(&pipex);
 }
 
@@ -44,22 +41,22 @@ void static preparing(t_pipex *pipex)
 	i = -1;
 	while (++i < (*pipex).pipes_n)
 	{
-		p_id = fork();
-		if (p_id == -1)
-			continue ;
-		if (p_id == 0)
-			handle_childp(pipex, i);
+		if (pipe(pipex->pipes[i]) == -1)
+		{
+			perror("Pipe_err");
+			exit(1);
+		}
 	}
-}
-
-void static	child_p(t_pipex *pipex, int i);
-{
-	if (i == 0)
-	{
-		first_command(i, pipex);
-	}
-	eles if (i == (*pipex).pipes_n)
-		//some staff for ending command
+	i = -1;
+	if (pipex->here_doc)
+		processing_hd(pipex);
 	else
-		//some staff for middle commands
+		processsing(pipex);
+	while (++i < pipex->pipes_n)
+	{
+		close(pipex->pipes[i][0]);
+		close(pipex->pipes[i][1]);
+	}
+	while (wait(NULL) != -1)
+		;
 }

@@ -6,78 +6,59 @@
 /*   By: tikhacha <tikhacha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/17 13:17:27 by tikhacha          #+#    #+#             */
-/*   Updated: 2023/05/24 16:09:23 by tikhacha         ###   ########.fr       */
+/*   Updated: 2023/06/01 01:43:08 by tikhacha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../incs/pipex.h"
 
-void	parsing(char **arg, t_pipex *pipex, char **env);
-int static	check_cmd(char **arg, t_pipex *pipex);
-// int static	checker(t_pipex *pipex, int i);
+void		check_cmd(t_pipex *pipex);
+void static	count_pipes(t_pipex *pipex);
 
-void	parsing(char **arg, t_pipex *pipex, char **env)
+void	parsing(t_pipex *pipex, char **env)
 {
-	(*pipex).f_2rd = arg[1];
-	(*pipex).f_2wr = arg[(*pipex).arg_n - 1];
-	(*pipex).fd_2rd = open((*pipex).f_2rd, O_RDONLY);
-	if ((*pipex).fd_2rd < 0)
-		return (perror((*pipex).f_2rd));
-	(*pipex).fd_2wr = open((*pipex).f_2wr, O_CREAT | O_WRONLY);
-	if ((*pipex).fd_2wr < 0)
-		return (perror((*pipex).f_2wr));
 	(*pipex).path = ft_split(strinmatrix(env, "PATH"), ':');
 	if (!(*pipex).path)
 		return ((void) write(2, "Error: Unexpected\n", 18));
-	if (!check_cmd (arg, pipex))
-	{
-		free_matrix((*pipex).path);
-		return ((void) write(2, "Error: Unexpected\n", 18));
-	}
-	(*pipex).done = 1;
+	if (ft_strcmp((*pipex).arg.argc[1], "here_doc") == 0)
+		(*pipex).fd_2rd = 1;
+	count_pipes(pipex);
+	(*pipex).fd_2rd = open((*pipex).arg.argc[1], O_RDONLY);
+	if ((*pipex).here_doc)
+		(*pipex).fd_2wr = open((*pipex).arg.argc[(*pipex).arg.argv - 1], \
+			O_WRONLY | O_CREAT | O_APPEND, 00755);
+	else
+		(*pipex).fd_2wr = open((*pipex).arg.argc[(*pipex).arg.argv - 1], \
+			O_WRONLY | O_CREAT | O_TRUNC, 00755);
 }
 
-int static	check_cmd(char **arg, t_pipex *pipex)
+void	check_cmd(t_pipex *pipex)
 {
-	int	i;
-
-	i = -1;
-	(*pipex).cmd_n = (*pipex).arg_n - 3;
-	(*pipex).cmd = (char **)malloc(sizeof(char *) * ((*pipex).arg_n + 1));
-	(*pipex).cmd_args = (char ***)malloc(sizeof(char **) *((*pipex).arg_n + 1));
-	if ((*pipex).cmd == NULL || (*pipex).cmd_args == NULL)
-		return (0);
-	(*pipex).cmd[(*pipex).cmd_n] = NULL;
-	(*pipex).cmd_args[(*pipex).cmd_n] = NULL;
-	while (++i < (*pipex).cmd_n)
+	pipex->cmd_args = ft_split(pipex->arg.argc[pipex->exec_cmd], ' ');
+	if (access(pipex->cmd_args[0], X_OK) == -1)
 	{
-		(*pipex).cmd_args[i] = ft_split(arg[i + 2], ' ');
-		(*pipex).cmd[i] = (*pipex).cmd_args[i][0];
+		if (ft_strchr(pipex->cmd_args[0], '/') != NULL)
+		{
+			write (2, "Error: Unknown command.\n", 24);
+			exit (1);
+		}
+		else if (!find_cmd(pipex))
+		{
+			write (2, "Error: Unknown command.\n", 24);
+			exit (1);
+		}
 	}
 	return (1);
 }
-/*
-int static	checker(t_pipex *pipex, int i)
-{
-	int		j;
-	char	*path_cmd;
-	char	*temp;
 
-	j = -1;
-	while ((*pipex).path[++j])
-	{
-		temp = ft_strjoin((*pipex).path[j], "/");
-		path_cmd = ft_strjoin(temp, (*pipex).cmd[i]);
-		if (access(path_cmd, X_OK) == 0)
-		{
-			free(path_cmd);
-			free(temp);
-			return (1);
-		}
-		free(path_cmd);
-		free(temp);
-	}
-	perror((*pipex).cmd[i]);
-	return (0);
+void static	count_pipes(t_pipex *pipex)
+{
+	(*pipex).cmd_n = (*pipex).arg.argv - (*pipex).here_doc - 3;
+	if ((*pipex).here_doc)
+		(*pipex).pipes_n = (*pipex).cmd_n;
+	else
+		(*pipex).pipes_n = (*pipex).cmd_n - 1;
+	(*pipex).pipes = malloc(sizeof(int [2]) * (*pipex).pipes_n);
+	if (!(*pipex).pipes)
+		exit (0);
 }
-*/
