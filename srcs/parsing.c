@@ -6,14 +6,16 @@
 /*   By: tikhacha <tikhacha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/17 13:17:27 by tikhacha          #+#    #+#             */
-/*   Updated: 2023/06/01 01:43:08 by tikhacha         ###   ########.fr       */
+/*   Updated: 2023/06/02 15:36:42 by tikhacha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../incs/pipex.h"
 
+int static	checker(t_pipex *pipex);
 void		check_cmd(t_pipex *pipex);
 void static	count_pipes(t_pipex *pipex);
+void		parsing(t_pipex *pipex, char **env);
 
 void	parsing(t_pipex *pipex, char **env)
 {
@@ -21,7 +23,7 @@ void	parsing(t_pipex *pipex, char **env)
 	if (!(*pipex).path)
 		return ((void) write(2, "Error: Unexpected\n", 18));
 	if (ft_strcmp((*pipex).arg.argc[1], "here_doc") == 0)
-		(*pipex).fd_2rd = 1;
+		(*pipex).here_doc = 1;
 	count_pipes(pipex);
 	(*pipex).fd_2rd = open((*pipex).arg.argc[1], O_RDONLY);
 	if ((*pipex).here_doc)
@@ -42,13 +44,36 @@ void	check_cmd(t_pipex *pipex)
 			write (2, "Error: Unknown command.\n", 24);
 			exit (1);
 		}
-		else if (!find_cmd(pipex))
+		else if (!checker(pipex))
 		{
 			write (2, "Error: Unknown command.\n", 24);
 			exit (1);
 		}
 	}
-	return (1);
+}
+
+int static	checker(t_pipex *pipex)
+{
+	char	*cmd;
+	char	*temp;
+	int		i;
+
+	i = -1;
+	while (pipex->path[++i])
+	{
+		temp = ft_strjoin("/", pipex->cmd_args[0]);
+		cmd = ft_strjoin(pipex->path[i], temp);
+		free (temp);
+		if (access(cmd, X_OK) != -1)
+		{
+			pipex->cmd_path = cmd;
+			return (1);
+		}
+	}
+	access (pipex->cmd_args[0], X_OK);
+	perror ("Access error");
+	free(cmd);
+	exit (1);
 }
 
 void static	count_pipes(t_pipex *pipex)

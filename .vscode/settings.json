@@ -4,6 +4,9 @@
 		"stdio.h": "c",
 		"unistd.h": "c",
 		"fcntl.h": "c",
-		"stdarg.h": "c"
+		"stdarg.h": "c",
+		"get_next_line.h": "c",
+		"limits.h": "c",
+		"pipex.h": "c"
 	}
 }

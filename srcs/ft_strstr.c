@@ -6,7 +6,7 @@
 /*   By: tikhacha <tikhacha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/17 13:22:19 by tikhacha          #+#    #+#             */
-/*   Updated: 2023/05/25 15:50:54 by tikhacha         ###   ########.fr       */
+/*   Updated: 2023/06/02 14:27:46 by tikhacha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,13 +16,9 @@ int	ft_strcmp(char *s1, char *s2)
 {
 	int	i;
 
-	i = -1;
-	if (s2[0] == '\0' == s1[0])
-		return (0);
+	i = 0;
 	while (s1[i] && s2[i] && s1[i] == s2[i])
 		i++;
-	if (s1[i] == '\0' == s2[i])
-		return (0);
 	return (s1[i] - s2[i]);
 }
 
