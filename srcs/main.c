@@ -6,7 +6,7 @@
 /*   By: tikhacha <tikhacha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/17 13:17:24 by tikhacha          #+#    #+#             */
-/*   Updated: 2023/06/02 17:52:08 by tikhacha         ###   ########.fr       */
+/*   Updated: 2023/06/07 16:38:50 by tikhacha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,12 +18,12 @@ int	main(int argv, char **argc, char **env)
 {
 	t_pipex	pipex;
 
-	if (argv < 6 && !ft_strcmp(argc[1], "here_doc"))
+	if (argv < 5)
 	{
 		write(2, "Error: Too few arguments!\n", 26);
 		return (0);
 	}
-	else if (argv < 5)
+	if (argv < 6 && !ft_strcmp(argc[1], "here_doc"))
 	{
 		write(2, "Error: Too few arguments!\n", 26);
 		return (0);

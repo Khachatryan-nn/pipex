@@ -6,7 +6,7 @@
 /*   By: tikhacha <tikhacha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/01 00:06:18 by tikhacha          #+#    #+#             */
-/*   Updated: 2023/06/02 17:51:15 by tikhacha         ###   ########.fr       */
+/*   Updated: 2023/06/07 16:37:51 by tikhacha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,7 @@ void	processsing(t_pipex *pipex)
 		else if (child_pid == 0)
 			handle_process(pipex, i);
 		pipex->exec_cmd++;
+
 	}
 }
 
