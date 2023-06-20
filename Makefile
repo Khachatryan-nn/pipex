@@ -15,7 +15,7 @@ BLUE			=	\033[0;34m
 NC				=	\033[0m
 
 .DEFAULT_GOAL	=	all
-HEADER			=	./incs/pipex.h
+HEADER			=	./incs/pipex.h Makefile
 
 all:				$(NAME)
 

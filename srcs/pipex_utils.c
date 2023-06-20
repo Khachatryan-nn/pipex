@@ -6,7 +6,7 @@
 /*   By: tikhacha <tikhacha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/25 15:51:30 by tikhacha          #+#    #+#             */
-/*   Updated: 2023/06/08 10:26:55 by tikhacha         ###   ########.fr       */
+/*   Updated: 2023/06/08 15:52:45 by tikhacha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void	child_start(t_pipex *pipex, int i)
 		close(pipex->pipes[j][0]);
 		close(pipex->pipes[j][1]);
 	}
-	if (execve(pipex->cmd_path, pipex->cmd_args, pipex->path) == -1 || \
+	if (execve(pipex->cmd_path, pipex->cmd_args, pipex->path) == -1 && \
 		execve(pipex->cmd_args[0], pipex->cmd_args, pipex->path) == -1)
 	{
 		perror("execve_Err");
@@ -67,7 +67,7 @@ void	child_middle(t_pipex *pipex, int i)
 		close(pipex->pipes[j][0]);
 		close(pipex->pipes[j][1]);
 	}
-	if (execve(pipex->cmd_path, pipex->cmd_args, pipex->path) == -1 || \
+	if (execve(pipex->cmd_path, pipex->cmd_args, pipex->path) == -1 && \
 		execve(pipex->cmd_args[0], pipex->cmd_args, pipex->path) == -1)
 	{
 		perror("execve_Err");
@@ -96,7 +96,7 @@ void	child_end(t_pipex *pipex, int i)
 		close(pipex->pipes[j][0]);
 		close(pipex->pipes[j][1]);
 	}
-	if (execve(pipex->cmd_path, pipex->cmd_args, pipex->path) == -1 || \
+	if (execve(pipex->cmd_path, pipex->cmd_args, pipex->path) == -1 && \
 		execve(pipex->cmd_args[0], pipex->cmd_args, pipex->path) == -1)
 	{
 		perror("execve_Err");
