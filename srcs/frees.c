@@ -6,11 +6,11 @@
 /*   By: tikhacha <tikhacha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/19 11:18:35 by tikhacha          #+#    #+#             */
-/*   Updated: 2023/05/19 11:20:27 by tikhacha         ###   ########.fr       */
+/*   Updated: 2023/07/06 21:09:17 by tikhacha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../incs/pipex.h"
+#include "pipex.h"
 
 void	free_matrix(char **x)
 {

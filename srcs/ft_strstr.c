@@ -6,11 +6,11 @@
 /*   By: tikhacha <tikhacha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/17 13:22:19 by tikhacha          #+#    #+#             */
-/*   Updated: 2023/06/02 14:27:46 by tikhacha         ###   ########.fr       */
+/*   Updated: 2023/07/06 21:09:17 by tikhacha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../incs/pipex.h"
+#include "pipex.h"
 
 int	ft_strcmp(char *s1, char *s2)
 {

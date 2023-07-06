@@ -6,11 +6,11 @@
 /*   By: tikhacha <tikhacha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/17 13:23:24 by tikhacha          #+#    #+#             */
-/*   Updated: 2023/05/20 20:04:58 by tikhacha         ###   ########.fr       */
+/*   Updated: 2023/07/06 21:09:17 by tikhacha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../incs/pipex.h"
+#include "pipex.h"
 
 int	ft_strlen(char const *s)
 {

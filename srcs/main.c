@@ -6,11 +6,11 @@
 /*   By: tikhacha <tikhacha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/17 13:17:24 by tikhacha          #+#    #+#             */
-/*   Updated: 2023/06/07 16:38:50 by tikhacha         ###   ########.fr       */
+/*   Updated: 2023/07/06 21:09:17 by tikhacha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../incs/pipex.h"
+#include "pipex.h"
 
 void static	preparing(t_pipex *pipex);
 

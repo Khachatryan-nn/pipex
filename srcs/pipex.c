@@ -6,11 +6,11 @@
 /*   By: tikhacha <tikhacha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/01 00:06:18 by tikhacha          #+#    #+#             */
-/*   Updated: 2023/06/08 10:26:24 by tikhacha         ###   ########.fr       */
+/*   Updated: 2023/07/06 21:09:17 by tikhacha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../incs/pipex.h"
+#include "pipex.h"
 
 void		pipex_init(t_pipex *pipex, int argv, char **argc, char **env);
 void static	handle_process(t_pipex *pipex, int i);

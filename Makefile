@@ -1,6 +1,7 @@
 NAME			=	pipex
 CC				=	gcc
 CFLAGS			=	-Wall -Wextra -Werror
+INCLUDES		=	-Iincs
 RM				=	rm -rf
 
 SRC_P			=	srcs
@@ -21,7 +22,7 @@ all:				$(NAME)
 
 $(OBJ_P)/%.o:		$(SRC_P)/%.c $(HEADER)
 						-@mkdir -p $(OBJ_P)
-						-@$(CC) $(CFLAGS) -c $< -o $@
+						-@$(CC) $(INCLUDES) $(CFLAGS) -c $< -o $@
 
 $(NAME):			$(OBJS)
 						-@$(CC) $(CFLAGS) -o $(NAME) $(OBJS) 2>/dev/null && \
@@ -39,10 +40,3 @@ fclean:				clean
 re:					fclean all
 
 .PHONY:	all clean fclean re
-
-#
-#$(NAME):			$(OBJS)
-#						-@$(CC) $(CFLAGS) -o $(NAME) $(OBJS)
-#						@echo "$(GREEN)Build complete!$(NC)"
-#how to make show this message only when compiling done without errors, otherwise show message that Compilation failed due to errors.
-#
